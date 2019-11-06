@@ -9,7 +9,12 @@ from .models import Post
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    context = {
+        'strposts1': posts,
+        'strposts2': posts,
+        'strposts3': posts,
+    }
+    return render(request, 'blog/post_list.html', context)
 
 	
 Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
